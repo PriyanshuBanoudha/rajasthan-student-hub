@@ -1,23 +1,22 @@
-import { Building, Users, GraduationCap, CreditCard, MapPin, FileText, Settings, Bell, Home } from "lucide-react";
+import { User, GraduationCap, CreditCard, MapPin, FileText, Settings, Bell, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
-interface NavbarProps {
+interface StudentNavbarProps {
   currentModule: string;
   onModuleChange: (module: string) => void;
 }
 
 const modules = [
-  { id: "dashboard", label: "Dashboard", icon: Building },
-  { id: "admissions", label: "Admissions", icon: GraduationCap },
-  { id: "fees", label: "Fee Management", icon: CreditCard },
-  { id: "hostel", label: "Hostel", icon: MapPin },
-  { id: "examinations", label: "Examinations", icon: FileText },
-  { id: "students", label: "Students", icon: Users },
+  { id: "dashboard", label: "Dashboard", icon: GraduationCap },
+  { id: "profile", label: "My Profile", icon: User },
+  { id: "fees", label: "Fee Status", icon: CreditCard },
+  { id: "hostel", label: "Hostel Info", icon: MapPin },
+  { id: "exams", label: "My Results", icon: FileText },
 ];
 
-export const Navbar = ({ currentModule, onModuleChange }: NavbarProps) => {
+export const StudentNavbar = ({ currentModule, onModuleChange }: StudentNavbarProps) => {
   return (
     <nav className="bg-gradient-secondary shadow-medium border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,10 +25,10 @@ export const Navbar = ({ currentModule, onModuleChange }: NavbarProps) => {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center shadow-glow">
-                <Building className="w-6 h-6 text-primary-foreground" />
+                <GraduationCap className="w-6 h-6 text-primary-foreground" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-secondary-foreground">Admin Portal</h1>
+                <h1 className="text-xl font-bold text-secondary-foreground">Student Portal</h1>
                 <p className="text-xs text-secondary-foreground/70">Govt. of Rajasthan - DTE</p>
               </div>
             </div>
@@ -66,7 +65,7 @@ export const Navbar = ({ currentModule, onModuleChange }: NavbarProps) => {
             <Button variant="ghost" size="sm" className="text-secondary-foreground/80 hover:text-secondary-foreground relative">
               <Bell className="w-5 h-5" />
               <Badge className="absolute -top-2 -right-2 w-5 h-5 p-0 flex items-center justify-center text-xs bg-warning">
-                3
+                2
               </Badge>
             </Button>
             <Button variant="ghost" size="sm" className="text-secondary-foreground/80 hover:text-secondary-foreground">
@@ -74,11 +73,11 @@ export const Navbar = ({ currentModule, onModuleChange }: NavbarProps) => {
             </Button>
             <Link to="/">
               <Button variant="ghost" size="sm" className="text-secondary-foreground/80 hover:text-secondary-foreground">
-                <Home className="w-5 h-5" />
+                <LogOut className="w-5 h-5" />
               </Button>
             </Link>
             <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center shadow-glow">
-              <span className="text-sm font-bold text-primary-foreground">A</span>
+              <span className="text-sm font-bold text-primary-foreground">S</span>
             </div>
           </div>
         </div>

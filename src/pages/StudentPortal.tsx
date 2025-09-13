@@ -1,37 +1,34 @@
 import { useState } from "react";
-import { Navbar } from "@/components/Navbar";
-import { Dashboard } from "@/components/Dashboard";
-import { AdmissionForm } from "@/components/AdmissionForm";
-import { FeeManagement } from "@/components/FeeManagement";
-import { HostelManagement } from "@/components/HostelManagement";
-import { ExaminationRecords } from "@/components/ExaminationRecords";
-import { StudentManagement } from "@/components/StudentManagement";
+import { StudentNavbar } from "@/components/student/StudentNavbar";
+import { StudentDashboard } from "@/components/student/StudentDashboard";
+import { StudentProfile } from "@/components/student/StudentProfile";
+import { StudentFees } from "@/components/student/StudentFees";
+import { StudentHostel } from "@/components/student/StudentHostel";
+import { StudentExams } from "@/components/student/StudentExams";
 
-const Index = () => {
+const StudentPortal = () => {
   const [currentModule, setCurrentModule] = useState("dashboard");
 
   const renderModule = () => {
     switch (currentModule) {
       case "dashboard":
-        return <Dashboard />;
-      case "admissions":
-        return <AdmissionForm />;
+        return <StudentDashboard />;
+      case "profile":
+        return <StudentProfile />;
       case "fees":
-        return <FeeManagement />;
+        return <StudentFees />;
       case "hostel":
-        return <HostelManagement />;
-      case "examinations":
-        return <ExaminationRecords />;
-      case "students":
-        return <StudentManagement />;
+        return <StudentHostel />;
+      case "exams":
+        return <StudentExams />;
       default:
-        return <Dashboard />;
+        return <StudentDashboard />;
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-card-secondary to-background">
-      <Navbar currentModule={currentModule} onModuleChange={setCurrentModule} />
+      <StudentNavbar currentModule={currentModule} onModuleChange={setCurrentModule} />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {renderModule()}
       </main>
@@ -49,7 +46,7 @@ const Index = () => {
               </p>
             </div>
             <p className="text-xs text-muted-foreground mt-2 md:mt-0">
-              © 2024 Student ERP System. All rights reserved.
+              © 2024 Student Portal. All rights reserved.
             </p>
           </div>
         </div>
@@ -58,4 +55,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default StudentPortal;
