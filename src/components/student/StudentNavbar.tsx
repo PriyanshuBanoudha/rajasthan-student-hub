@@ -1,7 +1,7 @@
 import { User, GraduationCap, CreditCard, MapPin, FileText, Settings, Bell, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface StudentNavbarProps {
   currentModule: string;
@@ -17,6 +17,7 @@ const modules = [
 ];
 
 export const StudentNavbar = ({ currentModule, onModuleChange }: StudentNavbarProps) => {
+  const { user, logout } = useAuth();
   return (
     <nav className="bg-gradient-secondary shadow-medium border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,13 +72,14 @@ export const StudentNavbar = ({ currentModule, onModuleChange }: StudentNavbarPr
             <Button variant="ghost" size="sm" className="text-secondary-foreground/80 hover:text-secondary-foreground">
               <Settings className="w-5 h-5" />
             </Button>
-            <Link to="/">
-              <Button variant="ghost" size="sm" className="text-secondary-foreground/80 hover:text-secondary-foreground">
-                <LogOut className="w-5 h-5" />
-              </Button>
-            </Link>
+            <div className="hidden md:flex items-center space-x-2 text-sm">
+              <span className="text-secondary-foreground/90">{user?.name}</span>
+            </div>
+            <Button variant="ghost" size="sm" onClick={logout} className="text-secondary-foreground/80 hover:text-secondary-foreground">
+              <LogOut className="w-5 h-5" />
+            </Button>
             <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center shadow-glow">
-              <span className="text-sm font-bold text-primary-foreground">S</span>
+              <span className="text-sm font-bold text-primary-foreground">{user?.name?.[0] || 'S'}</span>
             </div>
           </div>
         </div>
